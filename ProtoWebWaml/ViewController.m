@@ -38,6 +38,8 @@
     [self.activityIndicator startAnimating];
     [self.activityIndicator setHidden:FALSE];
 
+    _startDate = [NSDate date];
+    
     if (_start) {
         _startDate = [NSDate date];
         [self.loadingLabel setText:[NSString stringWithFormat:@"chargement en cours...\nurl : %@", WAML_URL]];
@@ -52,11 +54,13 @@
     
     [self.activityIndicator stopAnimating];
     [self.activityIndicator setHidden:TRUE];
+
+    NSTimeInterval timeInterval = [_startDate timeIntervalSinceNow];
+
     
     if (_start) {
-        
-        NSTimeInterval timeInterval = [_startDate timeIntervalSinceNow];
-        NSLog(@"loading duration : %f", -timeInterval);
+
+        NSLog(@"initialize loading duration : %f", -timeInterval);
         
         [self.loadingLabel setHidden:TRUE];
         [self.loadingLabel setUserInteractionEnabled:FALSE];
@@ -69,6 +73,8 @@
         
         _start = FALSE;
         
+    } else {
+        NSLog(@"other loading duration : %f", -timeInterval);
     }
 }
 
