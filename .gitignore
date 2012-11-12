@@ -13,3 +13,7 @@ build/*
 xcuserdata
 profile
 *.moved-aside
+
+ProtoWebWaml/.DS_Store
+
+.DS_Store
